@@ -2,7 +2,10 @@
 name = "alacritty_startup"
 version = "0.1.0"
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Sets various settings in my alacritty config based on external conditions."
 
 [dependencies]
+dirs = "5"
+serde = { version = "1", features = ["derive"] }
+serde_yaml = "0.9"
+xrandr = "0.2.0"
