@@ -1,0 +1,10 @@
+[Unit]
+Description=Run alacritty_startup after BSPWM session starts
+After=bspwm.target
+
+[Service]
+Type=simple
+ExecStart=/home/ragnyll/.cargo/bin/alacritty_startup
+
+[Install]
+WantedBy=default.target
