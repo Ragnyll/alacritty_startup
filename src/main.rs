@@ -7,8 +7,8 @@ use std::{
 use xrandr::XHandle;
 
 const FONT_SIZE_1_MONITOR: u8 = 8;
-const FONT_SIZE_2_MONITOR: u8 = 12;
-const ALACRITTY_CONFIG_PATH: &str = "alacritty/alacritty.yml";
+const FONT_SIZE_2_MONITOR: u8 = 11;
+const ALACRITTY_CONFIG_PATH: &str = "alacritty/alacritty.toml";
 
 fn main() {
     let mut alacritty_config = get_alacritty_config();
@@ -24,7 +24,7 @@ fn main() {
 }
 
 fn write_new_alacritty_config(alacritty_config: &MyAlacrittyConfig) {
-    let yaml_string = serde_yaml::to_string(alacritty_config)
+    let toml_string = toml::to_string(alacritty_config)
         .expect("Could not serialize MyAlacrittyConfig to string");
 
     let alacritty_config_path = config_dir()
@@ -34,7 +34,7 @@ fn write_new_alacritty_config(alacritty_config: &MyAlacrittyConfig) {
         File::create(alacritty_config_path).expect("Unable to create file");
 
     new_config_file
-        .write_all(yaml_string.as_bytes())
+        .write_all(toml_string.as_bytes())
         .expect("Could not wirte to alacritty config file");
 }
 
@@ -49,7 +49,7 @@ fn get_alacritty_config() -> MyAlacrittyConfig {
         .read_to_string(&mut contents)
         .expect("unable to read file.");
 
-    serde_yaml::from_str(&contents).expect("Could not deserialize alacritty_config.")
+    toml::from_str(&contents).expect("Could not deserialize alacritty_config.")
 }
 
 fn set_alacritty_font_size_1_monitor(alacritty_config: &mut MyAlacrittyConfig) {
