@@ -7,5 +7,5 @@ description = "Sets various settings in my alacritty config based on external co
 [dependencies]
 dirs = "5"
 serde = { version = "1", features = ["derive"] }
-toml = "0.8.8"
+toml = "0.8.12"
 xrandr = "0.2.0"
